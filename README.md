@@ -20,6 +20,8 @@ WarTracker.RegisterEvent('Market', 'itemPurchased')
 AddEventHandler('your_resource:itemPurchased', function(item, count)
   WarTracker.SendEvent('Market', 'itemPurchased', { item = item, count = count })
 end)
+
+WarTracker.RegisterServerEvent('playerDropped')
 ```
 
 ## API
@@ -35,6 +37,7 @@ WarTracker.SetLogEnabled(enabled)
 
 WarTracker.RegisterEvent(category, name)
 WarTracker.SendEvent(category, name, value)
+WarTracker.RegisterServerEvent(eventName)
 
 WarTracker.GetEventCount()
 WarTracker.ClearEvents()

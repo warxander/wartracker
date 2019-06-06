@@ -2,6 +2,9 @@ WarTracker = { }
 WarTracker.__index = WarTracker
 
 
+local serverEventCategoryName = '__serverEvent' -- Edit this if you want
+
+-- Do not change anything below!
 local events = { }
 local isLogEnabled = false
 
@@ -15,6 +18,27 @@ function WarTracker.SetLogEnabled(enabled)
 	isLogEnabled = enabled
 end
 
+function WarTracker.RegisterServerEvent(eventName)
+	if not WarTracker.RegisterEvent(serverEventCategoryName, eventName) then return end
+
+	AddEventHandler(eventName, function(...)
+		local eventValue = nil
+		local args = { ... }
+		local argc = #args
+
+		if argc ~= 0 then
+			if argc == 1 then
+				eventValue = args[1]
+			else
+				eventValue = { }
+				for i = 1, argc do table.insert(eventValue, args[i]) end
+			end
+		end
+
+		WarTracker.SendEvent(serverEventCategoryName, eventName, eventValue)
+	end)
+end
+
 function WarTracker.RegisterEvent(category, name)
 	if not events[category] then
 		log('Registering '..category..' category...')
@@ -24,7 +48,10 @@ function WarTracker.RegisterEvent(category, name)
 	if not events[category][name] then
 		log('Registering '..category..':'..name..' event...')
 		events[category][name] = { }
+		return true
 	end
+
+	return false
 end
 
 function WarTracker.SendEvent(category, name, value)
