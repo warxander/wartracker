@@ -38,14 +38,23 @@ WarTracker.SendEvent(category, name, value)
 
 WarTracker.GetEventCount()
 WarTracker.ClearEvents()
+
+-- wartracker_mysql.lua
+WarTracker.MySQL.SetLogEnabled(enabled)
+WarTracker.MySQL.SetDumpInterval(interval)
+WarTracker.MySQL.SetDumpMinEventCount(count)
 ```
 
 
 ## Changelog
 ### 1.1
+* (MySQL) Use configurable deferred event queue dump
 * New API
   - `WarTracker.GetEventCount()`
   - `WarTracker.ClearEvents()`
+  - `WarTracker.MySQL.SetLogEnabled(enabled)`
+  - `WarTracker.MySQL.SetDumpInterval(interval)`
+  - `WarTracker.MySQL.SetDumpMinEventCount(count)`
 
 ### 1.0
 * Initial release
