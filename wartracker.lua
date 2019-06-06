@@ -46,3 +46,23 @@ function WarTracker.SendEvent(category, name, value)
 	table.insert(events[category][name], event)
 	TriggerEvent('wartracker:eventReported', category, name, event)
 end
+
+function WarTracker.GetEventCount()
+	local eventCount = 0
+
+	for _, eventLists in pairs(events) do
+		for _, eventList in pairs(eventLists) do
+			eventCount = eventCount + #eventList
+		end
+	end
+
+	return eventCount
+end
+
+function WarTracker.ClearEvents()
+	for _, eventLists in pairs(events) do
+		for _, eventList in pairs(eventLists) do
+			eventList = { }
+		end
+	end
+end

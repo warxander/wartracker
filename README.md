@@ -32,11 +32,20 @@ end)
 
 -- Functions
 WarTracker.SetLogEnabled(enabled)
+
 WarTracker.RegisterEvent(category, name)
 WarTracker.SendEvent(category, name, value)
+
+WarTracker.GetEventCount()
+WarTracker.ClearEvents()
 ```
 
 
 ## Changelog
+### 1.1
+* New API
+  - `WarTracker.GetEventCount()`
+  - `WarTracker.ClearEvents()`
+
 ### 1.0
 * Initial release
